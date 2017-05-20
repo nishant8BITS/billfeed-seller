@@ -6,13 +6,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { StockInPage } from '../pages/stockin/stockin';
+import { StockinPage } from '../pages/stockin/stockin';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    StockInPage
+    StockinPage
   ],
   imports: [
     BrowserModule,
@@ -22,7 +22,7 @@ import { StockInPage } from '../pages/stockin/stockin';
   entryComponents: [
     MyApp,
     HomePage,
-    StockInPage
+    StockinPage
   ],
   providers: [
     StatusBar,
