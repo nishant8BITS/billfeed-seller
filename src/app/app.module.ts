@@ -3,31 +3,48 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { StockinPage } from '../pages/stockin/stockin';
+import { BarcodeScanner } from "@ionic-native/barcode-scanner";
+import { ItemDetailPage } from "../pages/itemdetail/itemdetail";
+import { InventoryListPage } from '../pages/inventory/inventory';
+import { InventoryServiceProvider } from '../providers/inventory-service/inventory-service';
+import { InventoryModalDetailPage } from '../pages/modals/itemdetailview/itemdetailview';
+
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    StockinPage
+    StockinPage,
+    ItemDetailPage,
+    InventoryListPage,
+    InventoryModalDetailPage
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    StockinPage
+    StockinPage,
+    ItemDetailPage,
+    InventoryListPage,
+    InventoryModalDetailPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BarcodeScanner,
+    InventoryServiceProvider
   ]
 })
 export class AppModule {}

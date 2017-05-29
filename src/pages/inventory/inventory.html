@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Inventory</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+<ion-searchbar (ionInput)="getItems($event)" [placeholder]= "'Search item by name'"></ion-searchbar>
+<ion-list>
+    <button ion-item *ngFor="let item of items" (click)="viewItemDetail(item)">
+       {{item.name}} <ion-icon name="ios-arrow-dropright-outline" item-end></ion-icon>
+       <div class="in-stock-sub-desc">
+          <span>In Stock:</span> {{item.available_stock}}
+          <span class="pricing"><span>Price: INR</span> {{item.rate}} per piece</span>
+       </div>
+    </button>
+  </ion-list>
+</ion-content>

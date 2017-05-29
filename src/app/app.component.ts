@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { StockinPage } from '../pages/stockin/stockin';
+import { InventoryListPage } from '../pages/inventory/inventory';
 
 @Component({
   templateUrl: 'app.html'
@@ -37,8 +38,20 @@ export class MyApp {
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(StockinPage);
+
+    switch (page) {
+      case "home":
+        this.nav.setRoot(HomePage);
+        break;
+      case "stockinpage":
+        this.nav.setRoot(StockinPage);
+        break;
+      case "inventorylistpage":
+        this.nav.setRoot(InventoryListPage);
+        break;
+      default:
+        this.nav.setRoot(StockinPage);
+        break;
+    }
   }
 }
