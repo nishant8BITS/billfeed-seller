@@ -1,20 +1,82 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar align-title="center">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Stock In</ion-title>
+    <ion-title>Add Item</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="Scan">
-  <div class="row">
-    <div class="col">
-      <h2>Scan your QR Code Here</h2>
-    </div>
-    <div class="col">
-      <h3>{{eventTitle}}</h3>
-    </div>
+<ion-content padding class="add-item-section">
+
+  <ion-list>
+    <ion-item>
+        <ion-label stacked>Item Name</ion-label>
+        <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item class="last-item-override">
+        <ion-label stacked>Brand/Provider</ion-label>
+        <ion-input type="text"></ion-input>
+    </ion-item>
+  </ion-list>
+    
+  <ion-grid class="price-section">
+    <ion-row>
+      <ion-col>
+          <div>
+            <ion-input type="text" placeholder="Purchase Rate (INR)"></ion-input>
+          </div>
+      </ion-col>
+      <ion-col>
+          <div>
+            <ion-input type="text" placeholder="Selling Rate (INR)"></ion-input>
+          </div>
+      </ion-col>
+    </ion-row>
+</ion-grid>
+
+
+  <ion-grid class="price-section">
+      <ion-row>
+        <ion-col>
+            <div>
+              <ion-input type="text" placeholder="Stock Available"></ion-input>
+            </div>
+        </ion-col>
+        <ion-col>
+            <div>
+                <ion-label class="form-item-label" *ngIf="!itemUnit">Unit</ion-label>
+                <ion-select [(ngModel)]="itemUnit" submitText="Done" cancelText="Cancel" class="qty-select" [ngClass]="{'unselected-unit': !itemUnit}" [selectOptions]="unitSelectOptions">
+                  <ion-option value="mac7">Piece</ion-option>
+                  <ion-option value="mac8">Packet</ion-option>
+                  <ion-option value="dos">Kg</ion-option>
+                  <ion-option value="lunix">Gm</ion-option>
+                </ion-select>
+            </div>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+  <ion-grid class="price-section">
+      <ion-row>
+        <ion-col col-6>
+            <div>
+              <ion-input type="text" [(ngModel)]="barCode" placeholder="Barcode / QR code"></ion-input>
+            </div>
+        </ion-col>
+        <ion-col>
+            <div class="scan-button-main">
+                <button ion-fab color="secondary" (click)="scanQR()" [disabled]="loading"><ion-icon name="barcode"></ion-icon></button>
+
+                 <button ion-fab color="primary" (click)="scanQR()" [disabled]="loading"><ion-icon name="qr-scanner"></ion-icon></button>
+            </div>
+        </ion-col>
+      </ion-row>
+  </ion-grid>
+
+
+  <div class="text-center">
+    <button ion-button large (click)="scanQR()">Save Item</button>
   </div>
-  <button ion-button block color="secondary" class="Scan-button" (click)="scanQR()" [disabled]="loading">{{buttonText}}</button>
+
+<!--   <button ion-button (click)="scanQR()" [disabled]="loading">{{buttonText}}</button> -->
 </ion-content>

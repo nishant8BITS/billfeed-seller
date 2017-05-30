@@ -17,6 +17,12 @@ export class StockinPage {
   private eventId: number;
   public eventTitle: string;
 
+  public itemUnit= '';
+  public unitSelectOptions = {
+     title: 'Select Unit'
+  }
+  public barCode='';
+
   constructor(
     private _nav: NavController,
     private _navParams: NavParams,
@@ -51,9 +57,12 @@ export class StockinPage {
   }
 
   private goToResult(barcodeData) {
-    this._nav.push(ItemDetailPage, {
-      scannedText: barcodeData.text
-    });
+
+    this.barCode = barcodeData.text;
+
+    // this._nav.push(ItemDetailPage, {
+    //   scannedText: barcodeData.text
+    // });
   }
 
   private checkPass(data) {
