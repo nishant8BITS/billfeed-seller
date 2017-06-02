@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -7,9 +7,43 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="page-home-content">
 
-  Will List Reporting Stuff on Home PAGE
+	
+<ion-segment [(ngModel)]="report">
+    <ion-segment-button value="today">
+      Today
+    </ion-segment-button>
+    <ion-segment-button value="thisweek">
+      This Week
+    </ion-segment-button>
+    <ion-segment-button value="thismonth">
+      This Month
+    </ion-segment-button>
+</ion-segment>
 
-  <!-- <button ion-button secondary menuToggle>Toggle Menu</button> -->
+<div class="reporting-container">
+	<div class="reporting-container-item">
+		<span>New Item added in inventory</span><span>1234</span>
+	</div>
+	<div class="reporting-container-item">
+		<span>Item StockIn in inventory</span><span>21</span>
+	</div>
+	<div class="reporting-container-item">
+		<span>Item StockOut from inventory</span><span>17</span>
+	</div>
+</div>
+
+
 </ion-content>
+
+<ion-footer class="page-home-footer" padding>
+  	<div class="home-action-button">
+		<button ion-button color="default" full round>Add New Item</button>
+		<button ion-button color="secondary" full round>Stock In</button>
+		<button ion-button color="danger" full round>Stock Out</button>
+	</div>
+</ion-footer>
+
+
+

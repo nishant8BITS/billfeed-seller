@@ -2,16 +2,17 @@ page-stockin {
 
 }
 
-
-
 .add-item-section {
 	.price-section {
 
 		margin-top:10px;
 		margin-bottom:10px;
 
-		.input-cover {
-			border-bottom: 1px solid #dedede;
+		ion-input {
+			border-bottom: 1px solid #dedede !important;
+			padding-left: 0px;
+    		margin-left: 4px;
+    		width: 90%;
 		}
 
 	}

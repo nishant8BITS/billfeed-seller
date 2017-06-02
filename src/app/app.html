@@ -5,23 +5,37 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
+  <ion-content class="main-menu-action">
     <ion-list>
+      <button ion-item menuClose (click)="openPage('home')" icon-left>
+        <ion-icon name="home"></ion-icon> Home
+      </button>
+      <button ion-item menuClose (click)="openPage('stockinpage')" icon-left>
+        <ion-icon name="add-circle"></ion-icon> Stock In
+      </button>
+      <button ion-item menuClose icon-left>
+        <ion-icon name="remove-circle"></ion-icon> Stock Out
+      </button>
+      <button ion-item menuClose (click)="openPage('inventorylistpage')" icon-left>
+        <ion-icon name="paper"></ion-icon> Inventory
+      </button>
+      <button ion-item menuClose (click)="openPage('inventorylistpage')" icon-left>
+        <ion-icon name="pie"></ion-icon> Reports
+      </button>
 
-      <button ion-item menuClose (click)="openPage('home')">
-        Home
-      </button>
-      <button ion-item menuClose (click)="openPage('stockinpage')">
-        Stock In
-      </button>
-      <button ion-item menuClose>
-        Stock Out
-      </button>
-      <button ion-item menuClose (click)="openPage('inventorylistpage')">
-        Inventory
+      <button ion-item menuClose (click)="openPage('inventorylistpage')" icon-left>
+         <ion-icon name="construct"></ion-icon> Settings
       </button>
     </ion-list>
   </ion-content>
+
+<ion-footer>
+    <ion-list>
+          <button ion-item menuClose clear (click)="openPage('inventorylistpage')" icon-left>
+             <ion-icon name="exit"></ion-icon> Logout
+          </button>
+    </ion-list>
+</ion-footer>
 
 </ion-menu>
 

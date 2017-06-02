@@ -1,3 +1,33 @@
-page-home {
+.page-home-footer {
+	.home-action-button button{
+		height : 45px;
+		margin-top:20px;
+	}
+}
 
+.page-home-content {
+	.reporting-container{
+		padding: 16px 30px 16px 16px;
+
+		.reporting-container-item{
+			margin-bottom: 15px;
+			margin-top: 15px;
+			font-size: 16px;
+		    color: #666666;
+		    padding: 7px 14px 7px 14px;
+		    border-bottom-right-radius: 25px;
+		    border-top-left-radius: 25px;
+		    border-top-color: #488aff;
+		    border-top-style: solid;
+
+			span:first-child{
+
+			}
+
+			span:last-child{
+    			float: right;
+   				font-size: 20px;
+			}
+		}
+	}
 }

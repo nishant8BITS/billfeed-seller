@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController,AlertController } from 'ionic-angular';
 
 import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 import { ItemDetailPage } from "../itemdetail/itemdetail";
+import {InventoryItem} from './item.ts';
+import {InventoryServiceProvider} from '../../providers/inventory-service/inventory-service'
 
 
 
@@ -14,31 +16,28 @@ export class StockinPage {
   public scannedText: string;
   public buttonText: string;
   public loading: boolean;
-  private eventId: number;
-  public eventTitle: string;
 
-  public itemUnit= '';
   public unitSelectOptions = {
      title: 'Select Unit'
   }
-  public barCode='';
+
+  public itemDetail = new InventoryItem();
 
   constructor(
     private _nav: NavController,
     private _navParams: NavParams,
-    private _barcodeScanner: BarcodeScanner) {
+    private _barcodeScanner: BarcodeScanner, 
+    private _inventoryServiceProvider: InventoryServiceProvider,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
-    this.eventId = this._navParams.get('eventId');
-    this.eventTitle = this._navParams.get('eventTitle');
-
-    this.buttonText = "Scan";
     this.loading = false;
   }
 
   public scanQR() {
-    this.buttonText = "Loading..";
+   
     this.loading = true;
 
     this._barcodeScanner.scan().then((barcodeData) => {
@@ -48,23 +47,60 @@ export class StockinPage {
         this.loading = false;
         return false;
       }
-      console.log("Scanned successfully!");
-      console.log(barcodeData);
       this.goToResult(barcodeData);
     }, (err) => {
       console.log(err);
+      this.loading = false;
     });
   }
 
   private goToResult(barcodeData) {
-
-    this.barCode = barcodeData.text;
-
-    // this._nav.push(ItemDetailPage, {
-    //   scannedText: barcodeData.text
-    // });
+    console.log(barcodeData);
+    this.itemDetail["ean"] = barcodeData.text;
+    this.loading = false;
   }
 
-  private checkPass(data) {
+
+  public saveItemToInventory(){
+
+
+    if(!this.itemDetail.name || !this.itemDetail.name.trim()){
+      this.showAlert('Error!', 'Please provide item name.');
+      return false;
+    }
+
+    let loader = this.loadingCtrl.create({
+      content: "Saving item ...",
+      spinner: 'circles'
+    });
+    loader.present();
+
+    this._inventoryServiceProvider.saveItemToInventory(this.itemDetail).then((data) =>{
+      loader.dismiss();
+      this.showAlert("Success", "Item added in inventory successfully.");
+      this.resetitemForm();
+    },(err) => {
+      this.showAlert("Error", "Sorry but we enconter with some issue. Please try again.");
+      loader.dismiss();
+    });
+  }
+
+  private showAlert(title, text){
+        let alert = this.alertCtrl.create({
+          title: title,
+          subTitle: text,
+          buttons: ['OK']
+        });
+        alert.present();
+  }
+
+  private resetitemForm(){
+      this.itemDetail.name = '';
+      this.itemDetail.brand = '';
+      this.itemDetail.ean = '';
+      this.itemDetail.unit = '';
+      this.itemDetail.purchase_rate = '';
+      this.itemDetail.rate = '';
+      this.itemDetail.stock_on_hand = '';
   }
 }
