@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {NavController, NavParams } from 'ionic-angular';
+import {NavController, NavParams,LoadingController } from 'ionic-angular';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { HomePage } from '../home/home';
 
 @Component({
   selector: 'page-login',
@@ -18,7 +18,8 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, 
   				public navParams: NavParams,
-  				private formBuilder: FormBuilder) {
+  				private formBuilder: FormBuilder,
+  				private loadingController: LoadingController) {
 
 
 
@@ -34,8 +35,29 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  public login(){
-  	
+  public login() {
+
+    // Validation
+    if (!this.loginFormControl.valid) {
+      alert("Invalid fields!");
+      return;
+    }
+
+    let loading = this.loadingController.create({
+      content: "Please wait...",
+      duration: 3000
+    });
+
+    loading.present();
+
+    //Take the values from  the form control
+    this.newUser.email = this.loginFormControl.get("email").value.trim();
+    this.newUser.password = this.loginFormControl.get("password").value;
+
+    // To simulate Logging in Server Response
+    window.setTimeout(() => {
+    	this.navCtrl.setRoot(HomePage);
+    }, 3000);
   }
 
 }
