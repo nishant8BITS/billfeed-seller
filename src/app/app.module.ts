@@ -13,6 +13,7 @@ import { ItemDetailPage } from "../pages/itemdetail/itemdetail";
 import { InventoryListPage } from '../pages/inventory/inventory';
 import { InventoryServiceProvider } from '../providers/inventory-service/inventory-service';
 import { InventoryModalDetailPage } from '../pages/modals/itemdetailview/itemdetailview';
+import {LoginPage} from '../pages/login/login';
 
 
 
@@ -23,7 +24,8 @@ import { InventoryModalDetailPage } from '../pages/modals/itemdetailview/itemdet
     StockinPage,
     ItemDetailPage,
     InventoryListPage,
-    InventoryModalDetailPage
+    InventoryModalDetailPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { InventoryModalDetailPage } from '../pages/modals/itemdetailview/itemdet
     StockinPage,
     ItemDetailPage,
     InventoryListPage,
-    InventoryModalDetailPage
+    InventoryModalDetailPage,
+    LoginPage
   ],
   providers: [
     StatusBar,

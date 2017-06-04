@@ -7,13 +7,15 @@ import { HomePage } from '../pages/home/home';
 import { StockinPage } from '../pages/stockin/stockin';
 import { InventoryListPage } from '../pages/inventory/inventory';
 
+import {LoginPage} from '../pages/login/login';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
