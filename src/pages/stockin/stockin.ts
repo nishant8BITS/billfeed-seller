@@ -7,7 +7,6 @@ import {InventoryItem} from './item.ts';
 import {InventoryServiceProvider} from '../../providers/inventory-service/inventory-service'
 
 
-
 @Component({
   selector: 'page-scan',
   templateUrl: 'stockin.html'
@@ -16,6 +15,16 @@ export class StockinPage {
   public scannedText: string;
   public buttonText: string;
   public loading: boolean;
+
+  public scannerOption = {
+          preferFrontCamera : false,
+          showFlipCameraButton : true, 
+          showTorchButton : true, 
+          torchOn: false,
+          prompt : "Place a barcode inside the scan area",
+          disableAnimations : true,
+          disableSuccessBeep: false 
+  }
 
   public unitSelectOptions = {
      title: 'Select Unit'
@@ -40,7 +49,7 @@ export class StockinPage {
    
     this.loading = true;
 
-    this._barcodeScanner.scan().then((barcodeData) => {
+    this._barcodeScanner.scan(this.scannerOption).then((barcodeData) => {
       if (barcodeData.cancelled) {
         console.log("User cancelled the action!");
         this.buttonText = "Scan";

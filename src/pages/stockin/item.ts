@@ -1,6 +1,6 @@
 export class InventoryItem {
 	
-	  name: string;
+	name: string;
       brand: string;
       ean: string;
       unit: string;
