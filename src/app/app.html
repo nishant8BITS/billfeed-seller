@@ -13,8 +13,8 @@
       <button ion-item menuClose (click)="openPage('stockinpage')" icon-left>
         <ion-icon name="add-circle"></ion-icon> Stock In
       </button>
-      <button ion-item menuClose icon-left>
-        <ion-icon name="remove-circle"></ion-icon> Stock Out
+      <button ion-item menuClose icon-left (click)="openPage('sellitemspage')">
+        <ion-icon name="remove-circle"></ion-icon> Sell Items
       </button>
       <button ion-item menuClose (click)="openPage('inventorylistpage')" icon-left>
         <ion-icon name="paper"></ion-icon> Inventory

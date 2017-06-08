@@ -8,6 +8,7 @@ import { StockinPage } from '../pages/stockin/stockin';
 import { InventoryListPage } from '../pages/inventory/inventory';
 
 import {LoginPage} from '../pages/login/login';
+import {SellitemPage} from '../pages/sellitem/sellitem';
 
 @Component({
   templateUrl: 'app.html'
@@ -15,7 +16,8 @@ import {LoginPage} from '../pages/login/login';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  //rootPage: any = LoginPage;
+  rootPage: any = SellitemPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -34,7 +36,6 @@ export class MyApp {
   }
 
   openPage(page) {
-
     switch (page) {
       case "home":
         this.nav.setRoot(HomePage);
@@ -44,6 +45,9 @@ export class MyApp {
         break;
       case "inventorylistpage":
         this.nav.setRoot(InventoryListPage);
+        break;
+      case "sellitemspage": 
+        this.nav.setRoot(SellitemPage);
         break;
       default:
         this.nav.setRoot(StockinPage);

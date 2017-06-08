@@ -14,7 +14,9 @@ import { InventoryListPage } from '../pages/inventory/inventory';
 import { InventoryServiceProvider } from '../providers/inventory-service/inventory-service';
 import { InventoryModalDetailPage } from '../pages/modals/itemdetailview/itemdetailview';
 import {LoginPage} from '../pages/login/login';
+import { StockoutComponent } from '../components/stockout/stockout';
 
+import {SellitemPageModule} from '../pages/sellitem/sellitem.module';
 
 
 @NgModule({
@@ -25,11 +27,13 @@ import {LoginPage} from '../pages/login/login';
     ItemDetailPage,
     InventoryListPage,
     InventoryModalDetailPage,
-    LoginPage
+    LoginPage,
+    StockoutComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    SellitemPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
