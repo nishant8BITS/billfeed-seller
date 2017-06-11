@@ -9,6 +9,8 @@ import { InventoryListPage } from '../pages/inventory/inventory';
 
 import {LoginPage} from '../pages/login/login';
 import {SellitemPage} from '../pages/sellitem/sellitem';
+import {SettingsPage} from '../pages/settings/settings';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +19,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   //rootPage: any = LoginPage;
-  rootPage: any = SellitemPage;
+  rootPage: any = SettingsPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -48,6 +50,9 @@ export class MyApp {
         break;
       case "sellitemspage": 
         this.nav.setRoot(SellitemPage);
+        break;
+      case "settingspage": 
+        this.nav.setRoot(SettingsPage);
         break;
       default:
         this.nav.setRoot(StockinPage);

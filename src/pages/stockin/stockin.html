@@ -29,7 +29,7 @@
       </ion-col>
       <ion-col>
           <div>
-            <ion-input type="number" [(ngModel)]="itemDetail.rate"   placeholder="Selling Rate (INR)"></ion-input>
+            <ion-input type="number" [(ngModel)]="itemDetail.selling_rate"   placeholder="Selling Rate (INR)"></ion-input>
           </div>
       </ion-col>
     </ion-row>
@@ -40,17 +40,17 @@
       <ion-row>
         <ion-col>
             <div>
-              <ion-input type="number" [(ngModel)]="itemDetail.stock_on_hand" placeholder="Stock Available"></ion-input>
+              <ion-input type="number" [(ngModel)]="itemDetail.qty" placeholder="Qty"></ion-input>
             </div>
         </ion-col>
         <ion-col>
             <div>
                 <ion-label class="form-item-label" *ngIf="!itemDetail.unit">Unit</ion-label>
                 <ion-select [(ngModel)]="itemDetail.unit" submitText="Done" cancelText="Cancel" class="qty-select" [ngClass]="{'unselected-unit': !itemDetail.unit}" [selectOptions]="unitSelectOptions">
-                  <ion-option value="mac7">Piece</ion-option>
-                  <ion-option value="mac8">Packet</ion-option>
-                  <ion-option value="dos">Kg</ion-option>
-                  <ion-option value="lunix">Gm</ion-option>
+                  <ion-option value="piece">Piece</ion-option>
+                  <ion-option value="packet">Packet</ion-option>
+                  <ion-option value="kg">Kg</ion-option>
+                  <ion-option value="gm">Gm</ion-option>
                 </ion-select>
             </div>
         </ion-col>
@@ -65,7 +65,7 @@
         </ion-col>
         <ion-col>
             <div class="scan-button-main">
-                <button ion-fab color="secondary" (click)="scanQR()"><ion-icon name="barcode"></ion-icon></button>
+                <button ion-fab color="secondary" (click)="scan()"><ion-icon name="barcode"></ion-icon></button>
             </div>
         </ion-col>
       </ion-row>

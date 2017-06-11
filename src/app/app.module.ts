@@ -17,6 +17,8 @@ import {LoginPage} from '../pages/login/login';
 import { StockoutComponent } from '../components/stockout/stockout';
 
 import {SellitemPageModule} from '../pages/sellitem/sellitem.module';
+import {SettingsPageModule} from '../pages/settings/settings.module';
+
 
 
 @NgModule({
@@ -34,6 +36,7 @@ import {SellitemPageModule} from '../pages/sellitem/sellitem.module';
     BrowserModule,
     HttpModule,
     SellitemPageModule,
+    SettingsPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

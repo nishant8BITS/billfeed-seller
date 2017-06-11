@@ -45,7 +45,7 @@ export class StockinPage {
     this.loading = false;
   }
 
-  public scanQR() {
+  public scan() {
    
     this.loading = true;
 
@@ -109,7 +109,7 @@ export class StockinPage {
       this.itemDetail.ean = '';
       this.itemDetail.unit = '';
       this.itemDetail.purchase_rate = '';
-      this.itemDetail.rate = '';
-      this.itemDetail.stock_on_hand = '';
+      this.itemDetail.selling_rate = '';
+      this.itemDetail.qty = '';
   }
 }

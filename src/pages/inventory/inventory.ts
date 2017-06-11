@@ -41,6 +41,7 @@ export class InventoryListPage {
      */
     this._inventoryServiceProvider.getInventoryItem()
     	.then(data => {
+        debugger;
     		this.items = data;
     		this.itemsList = data;
     		loader.dismiss();
