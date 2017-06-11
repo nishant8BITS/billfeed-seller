@@ -1,19 +1,17 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController,AlertController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController,AlertController,ToastController } from 'ionic-angular';
 
 import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 import { ItemDetailPage } from "../itemdetail/itemdetail";
 import {InventoryItem} from './item.ts';
 import {InventoryServiceProvider} from '../../providers/inventory-service/inventory-service'
-
+import { HomePage } from '../home/home';
 
 @Component({
   selector: 'page-scan',
   templateUrl: 'stockin.html'
 })
 export class StockinPage {
-  public scannedText: string;
-  public buttonText: string;
   public loading: boolean;
 
   public scannerOption = {
@@ -38,7 +36,8 @@ export class StockinPage {
     private _barcodeScanner: BarcodeScanner, 
     private _inventoryServiceProvider: InventoryServiceProvider,
     public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController, 
+    public toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -51,8 +50,6 @@ export class StockinPage {
 
     this._barcodeScanner.scan(this.scannerOption).then((barcodeData) => {
       if (barcodeData.cancelled) {
-        console.log("User cancelled the action!");
-        this.buttonText = "Scan";
         this.loading = false;
         return false;
       }
@@ -86,7 +83,12 @@ export class StockinPage {
 
     this._inventoryServiceProvider.saveItemToInventory(this.itemDetail).then((data) =>{
       loader.dismiss();
-      this.showAlert("Success", "Item added in inventory successfully.");
+
+      let toast = this.toastCtrl.create({
+        message: 'Item added in inventory successfully.',
+        duration: 3000
+      });
+      toast.present();
       this.resetitemForm();
     },(err) => {
       this.showAlert("Error", "Sorry but we enconter with some issue. Please try again.");
@@ -111,5 +113,9 @@ export class StockinPage {
       this.itemDetail.purchase_rate = '';
       this.itemDetail.selling_rate = '';
       this.itemDetail.qty = '';
+  }
+
+  public cancel(){
+    this._nav.setRoot(HomePage);
   }
 }

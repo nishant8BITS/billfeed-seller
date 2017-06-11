@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Add New Item</ion-title>
+    <ion-title>Edit Item</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -75,7 +75,7 @@
 
 <ion-footer padding>
   <div class="text-center edit-footer-action">
-    <div><button ion-button full (click)="cancel()" color="danger">Cancel</button></div>
-    <div style="float:right"><button ion-button full (click)="saveItemToInventory()" color="secondary" [disabled]="loading">Save Item</button></div>
+  	<div><button ion-button full (click)="cancel()" color="danger">Cancel</button></div>
+  	<div style="float:right"><button ion-button full (click)="updateItemToInventory()" color="secondary" [disabled]="loading">Update Item</button></div>
   </div>
 </ion-footer>

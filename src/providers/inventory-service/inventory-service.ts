@@ -35,15 +35,46 @@ export class InventoryServiceProvider {
  /*
      Save Item to inventory
   */
- public saveItemToInventory(inventoryIten){
+ public saveItemToInventory(inventoryItem){
    let headers = new Headers({ 'Content-Type': 'application/json' });
    let options = new RequestOptions({ headers: headers });
     return new Promise(resolve => {
-      this.http.post(this.API_BaseUrl + '/api/v1/inventory', inventoryIten , options)
+      this.http.post(this.API_BaseUrl + '/api/v1/inventory', inventoryItem , options)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
         });
     });
   }
+
+   /*
+     Save Item to inventory
+  */
+   public updateItemToInventory(inventoryItem){
+     debugger;
+     let headers = new Headers({ 'Content-Type': 'application/json' });
+     let options = new RequestOptions({ headers: headers });
+      return new Promise(resolve => {
+        this.http.put(this.API_BaseUrl + '/api/v1/inventory/' + inventoryItem._id, inventoryItem , options)
+          .map(res => res.json())
+          .subscribe(data => {
+            resolve(data);
+          });
+      });
+    }
+
+    /*
+       Delete Item to inventory
+    */
+   public deleteItemFromInventory(itemId){
+     let headers = new Headers({ 'Content-Type': 'application/json' });
+     let options = new RequestOptions({ headers: headers });
+      return new Promise(resolve => {
+        this.http.delete(this.API_BaseUrl + '/api/v1/inventory/' + itemId, options)
+          .map(res => res.json())
+          .subscribe(data => {
+            resolve(data);
+          });
+      });
+    }
 }

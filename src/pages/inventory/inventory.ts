@@ -3,6 +3,7 @@ import { NavController, NavParams,LoadingController,ModalController } from 'ioni
 import {InventoryServiceProvider} from '../../providers/inventory-service/inventory-service'
 import { InventoryModalDetailPage } from '../modals/itemdetailview/itemdetailview';
 
+import {ItemDetailPage} from '../itemdetail/itemdetail.ts';
 
 
 @Component({
@@ -41,7 +42,6 @@ export class InventoryListPage {
      */
     this._inventoryServiceProvider.getInventoryItem()
     	.then(data => {
-        debugger;
     		this.items = data;
     		this.itemsList = data;
     		loader.dismiss();
@@ -51,8 +51,9 @@ export class InventoryListPage {
 
 
   viewItemDetail(itemDetail){
-  	let modal = this.modalCtrl.create(InventoryModalDetailPage, {itemDetail: itemDetail});
-    modal.present();
+    this.navCtrl.push(ItemDetailPage, {itemDetail: itemDetail});
+  	// let modal = this.modalCtrl.create(InventoryModalDetailPage, {itemDetail: itemDetail});
+   //  modal.present();
   }
 
   getItems(ev: any) {
