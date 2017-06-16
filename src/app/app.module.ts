@@ -13,13 +13,19 @@ import { ItemDetailPage } from "../pages/itemdetail/itemdetail";
 import { InventoryListPage } from '../pages/inventory/inventory';
 import { InventoryServiceProvider } from '../providers/inventory-service/inventory-service';
 import { InventoryModalDetailPage } from '../pages/modals/itemdetailview/itemdetailview';
-import {LoginPage} from '../pages/login/login';
+import { LoginPage} from '../pages/login/login';
 import { StockoutComponent } from '../components/stockout/stockout';
 
-import {SellitemPageModule} from '../pages/sellitem/sellitem.module';
-import {SettingsPageModule} from '../pages/settings/settings.module';
-import {EdititemPageModule} from '../pages/edititem/edititem.module';
+import { SellitemPageModule} from '../pages/sellitem/sellitem.module';
+import { SettingsPageModule} from '../pages/settings/settings.module';
+import { EdititemPageModule} from '../pages/edititem/edititem.module';
+import { StockinitemPageModule} from '../pages/stockinitem/stockinitem.module';
+import { SuppliersPageModule} from '../pages/suppliers/suppliers.module';
 
+
+import { SettingsProvider } from '../providers/settings/settings';
+import { AuthProvider } from '../providers/auth/auth';
+import { SupplierProvider } from '../providers/supplier/supplier';
 
 
 @NgModule({
@@ -39,6 +45,8 @@ import {EdititemPageModule} from '../pages/edititem/edititem.module';
     SellitemPageModule,
     SettingsPageModule,
     EdititemPageModule,
+    StockinitemPageModule,
+    SuppliersPageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -56,7 +64,10 @@ import {EdititemPageModule} from '../pages/edititem/edititem.module';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BarcodeScanner,
-    InventoryServiceProvider
+    InventoryServiceProvider,
+    SettingsProvider,
+    AuthProvider,
+    SupplierProvider
   ]
 })
 export class AppModule {}

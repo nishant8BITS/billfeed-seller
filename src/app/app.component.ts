@@ -10,6 +10,7 @@ import { InventoryListPage } from '../pages/inventory/inventory';
 import {LoginPage} from '../pages/login/login';
 import {SellitemPage} from '../pages/sellitem/sellitem';
 import {SettingsPage} from '../pages/settings/settings';
+import {StockinitemPage} from '../pages/stockinitem/stockinitem';
 
 
 @Component({
@@ -43,7 +44,7 @@ export class MyApp {
         this.nav.setRoot(HomePage);
         break;
       case "stockinpage":
-        this.nav.setRoot(StockinPage);
+        this.nav.setRoot(StockinitemPage);
         break;
       case "inventorylistpage":
         this.nav.setRoot(InventoryListPage);
@@ -55,7 +56,7 @@ export class MyApp {
         this.nav.setRoot(SettingsPage);
         break;
       default:
-        this.nav.setRoot(StockinPage);
+        this.nav.setRoot(HomePage);
         break;
     }
   }

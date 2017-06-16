@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
+
+import {SuppliereditPageModule} from './supplieredit/supplieredit.module';
 import { SuppliersPage } from './suppliers';
 
 @NgModule({
   declarations: [
-    SuppliersPage,
+    SuppliersPage
   ],
   imports: [
+  	SuppliereditPageModule,
     IonicPageModule.forChild(SuppliersPage),
   ],
   exports: [

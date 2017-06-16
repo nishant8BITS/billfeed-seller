@@ -14,9 +14,27 @@
         <ion-label stacked>Item Name</ion-label>
         <ion-input type="text" [(ngModel)]="itemDetail.name"></ion-input>
     </ion-item>
-    <ion-item class="last-item-override">
+    <ion-item>
+        <ion-label stacked>Item Description</ion-label>
+        <ion-input type="text" [(ngModel)]="itemDetail.description"></ion-input>
+    </ion-item>
+    <ion-item>
         <ion-label stacked>Brand/Provider</ion-label>
         <ion-input type="text" [(ngModel)]="itemDetail.brand"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Category</ion-label>
+      <ion-select [(ngModel)]="itemDetail.category">
+        <ion-option value="electronics">Electronics</ion-option>
+        <ion-option value="m">Appliaces</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="last-item-override">
+      <ion-label>Supplier</ion-label>
+      <ion-select [(ngModel)]="itemDetail.supplier">
+        <ion-option value="f">Female</ion-option>
+        <ion-option value="m">Male</ion-option>
+      </ion-select>
     </ion-item>
   </ion-list>
     

@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Supplier</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item>
+        <ion-label stacked>Supplier Name</ion-label>
+        <ion-input type="text" [(ngModel)]="supplier.name"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label stacked>Owner Name</ion-label>
+        <ion-input type="text" [(ngModel)]="supplier.ownername"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label stacked>Mobile No</ion-label>
+        <ion-input type="text" [(ngModel)]="supplier.mobileno"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label stacked>GSTIN No</ion-label>
+        <ion-input type="text" [(ngModel)]="supplier.gstinno"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label stacked>PAN No/TIN NO</ion-label>
+        <ion-input type="text" [(ngModel)]="supplier.gstinno"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label stacked>Address</ion-label>
+        <ion-input type="text" [(ngModel)]="supplier.address"></ion-input>
+    </ion-item>
+    <ion-item item-end>
+        <ion-label stacked>Notes</ion-label>
+        <ion-input type="text" [(ngModel)]="supplier.notes"></ion-input>
+    </ion-item>
+  </ion-list>
+    
+</ion-content>
+
+<ion-footer padding>
+  <div class="text-center edit-footer-action">
+  	<div><button ion-button full (click)="cancel()" color="danger">Cancel</button></div>
+  	<div style="float:right"><button ion-button full (click)="saveSupplier()" color="secondary" [disabled]="loading">{{buttonText}}</button></div>
+  </div>
+</ion-footer>

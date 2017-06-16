@@ -3,16 +3,15 @@ import { Http, Headers,RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /*
-  Generated class for the InventoryServiceProvider provider.
+  Generated class for the SupplierProvider provider.
 
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class InventoryServiceProvider {
+export class SupplierProvider {
 
   private headers = new Headers();
-
   public API_BaseUrl = "http://localhost:3000";//'https://billfeed-backend.herokuapp.com';//'http://localhost:3000';
 
   constructor(public http: Http) {
@@ -20,11 +19,11 @@ export class InventoryServiceProvider {
   }
 
   /*
-    Get Item from Inventory
+    Get getSuppliers
    */
-  public getInventoryItem(){
+  public getSuppliers(){
   	return new Promise(resolve => {
-  		this.http.get(this.API_BaseUrl+ '/api/v1/inventory')
+  		this.http.get(this.API_BaseUrl+ '/api/v1/supplier')
   			.map(res => res.json())
   			.subscribe(data => {
   				resolve(data);
@@ -33,13 +32,13 @@ export class InventoryServiceProvider {
   }
 
  /*
-     Save Item to inventory
+     Save supplier
   */
- public saveItemToInventory(inventoryItem){
+ public saveSupplier(supplierDetail){
    let headers = new Headers({ 'Content-Type': 'application/json' });
    let options = new RequestOptions({ headers: headers });
     return new Promise(resolve => {
-      this.http.post(this.API_BaseUrl + '/api/v1/inventory', inventoryItem , options)
+      this.http.post(this.API_BaseUrl + '/api/v1/supplier', supplierDetail , options)
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -48,14 +47,13 @@ export class InventoryServiceProvider {
   }
 
    /*
-     Save Item to inventory
+    	Update supplier
   */
-   public updateItemToInventory(inventoryItem){
-     debugger;
+   public updateSupplier(supplierDetail){
      let headers = new Headers({ 'Content-Type': 'application/json' });
      let options = new RequestOptions({ headers: headers });
       return new Promise(resolve => {
-        this.http.put(this.API_BaseUrl + '/api/v1/inventory/' + inventoryItem._id, inventoryItem , options)
+        this.http.put(this.API_BaseUrl + '/api/v1/supplier/' + supplierDetail._id, supplierDetail , options)
           .map(res => res.json())
           .subscribe(data => {
             resolve(data);
@@ -66,26 +64,11 @@ export class InventoryServiceProvider {
     /*
        Delete Item to inventory
     */
-   public deleteItemFromInventory(itemId){
+   public deleteSupplier(supplierId){
      let headers = new Headers({ 'Content-Type': 'application/json' });
      let options = new RequestOptions({ headers: headers });
       return new Promise(resolve => {
-        this.http.delete(this.API_BaseUrl + '/api/v1/inventory/' + itemId, options)
-          .map(res => res.json())
-          .subscribe(data => {
-            resolve(data);
-          });
-      });
-    }
-
-    /*
-      Get Items details based on EAN number
-     */
-    public getItemByEANno(ean){
-     let headers = new Headers({ 'Content-Type': 'application/json' });
-     let options = new RequestOptions({ headers: headers });
-      return new Promise(resolve => {
-        this.http.get(this.API_BaseUrl + '/api/v1/inventory/search?ean' + ean, options)
+        this.http.delete(this.API_BaseUrl + '/api/v1/supplier/' + supplierId, options)
           .map(res => res.json())
           .subscribe(data => {
             resolve(data);

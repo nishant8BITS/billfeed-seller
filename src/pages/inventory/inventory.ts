@@ -4,6 +4,7 @@ import {InventoryServiceProvider} from '../../providers/inventory-service/invent
 import { InventoryModalDetailPage } from '../modals/itemdetailview/itemdetailview';
 
 import {ItemDetailPage} from '../itemdetail/itemdetail.ts';
+import { StockinPage } from '../stockin/stockin';
 
 
 @Component({
@@ -22,11 +23,12 @@ export class InventoryListPage {
   	private _inventoryServiceProvider: InventoryServiceProvider,
   	public loadingCtrl: LoadingController,
   	public modalCtrl: ModalController) {
-  	this.loadInventoryItem();
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad() {}
 
+  ionViewDidEnter(){
+    this.loadInventoryItem();
   }
 
   loadInventoryItem(){
@@ -68,6 +70,10 @@ export class InventoryListPage {
     }else{
     	this.items = this.itemsList;
     }
+  }
+
+  addNewItem(){
+    this.navCtrl.push(StockinPage);
   }
 
 }

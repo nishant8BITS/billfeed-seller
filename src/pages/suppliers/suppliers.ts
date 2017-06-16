@@ -1,24 +1,52 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams,LoadingController,ModalController } from 'ionic-angular';
+import { SuppliereditPage} from './supplieredit/supplieredit';
+import {SupplierProvider} from '../../providers/supplier/supplier';
+import {SupplierFactory} from '../SupplierFactory';
 
-/**
- * Generated class for the SuppliersPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-@IonicPage()
+
 @Component({
   selector: 'page-suppliers',
   templateUrl: 'suppliers.html',
 })
 export class SuppliersPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public suppliers: any; 
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public supplierProvider: SupplierProvider,
+              public loadingCtrl: LoadingController) {
+
+    this.suppliers= [];
+    this.getSuppliers();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SuppliersPage');
+    
   }
 
+  addNewItem(){
+  	this.navCtrl.push(SuppliereditPage);
+  }
+
+  getSuppliers(){
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      spinner: 'circles'
+    });
+    loader.present();
+
+
+    this.supplierProvider.getSuppliers().then((suppliers) => {
+        this.suppliers = suppliers;
+        loader.dismiss();
+      },(err) => {
+        loader.dismiss();
+      });
+  }
+
+  viewSupplierDetail(){
+
+  }
 }

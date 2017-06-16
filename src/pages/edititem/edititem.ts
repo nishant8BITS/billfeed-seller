@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController,AlertController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController,AlertController,ToastController } from 'ionic-angular';
 import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 import {InventoryServiceProvider} from '../../providers/inventory-service/inventory-service';
 import { InventoryListPage } from '../inventory/inventory';
@@ -31,7 +31,8 @@ export class EdititemPage {
 			    private _barcodeScanner: BarcodeScanner, 
 			    private _inventoryServiceProvider: InventoryServiceProvider,
 			    public loadingCtrl: LoadingController,
-			    public alertCtrl: AlertController) {
+			    public alertCtrl: AlertController,
+          public toastCtrl: ToastController) {
   	 this.itemDetail = this._navParams.get('itemDetail');
   }
 
@@ -76,7 +77,12 @@ export class EdititemPage {
     this._inventoryServiceProvider.updateItemToInventory(this.itemDetail).then((data) =>{
       loader.dismiss();
       this._nav.push(InventoryListPage);
-      this.showAlert("Success", "Item Updated in inventory successfully.");
+
+      let toast = this.toastCtrl.create({
+        message: 'Item updated in inventory successfully.',
+        duration: 3000
+      });
+      toast.present();
     },(err) => {
       this.showAlert("Error", "Sorry but we enconter with some issue. Please try again.");
       loader.dismiss();

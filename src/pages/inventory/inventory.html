@@ -9,6 +9,10 @@
 
 
 <ion-content>
+    <ion-fab top right edge style="top: -56px;">
+      <button ion-fab mini color="light" (click)="addNewItem()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+
 <ion-searchbar (ionInput)="getItems($event)" [placeholder]= "'Search item by name'"></ion-searchbar>
 <ion-list>
     <button ion-item *ngFor="let item of items" (click)="viewItemDetail(item)">

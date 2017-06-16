@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Supplier Details</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+	<ion-fab top right edge>
+	  <button ion-fab mini color="light" (click)="editSupplier()"><ion-icon name="ios-create-outline"></ion-icon></button>
+	</ion-fab>
+
+	<ion-fab top right style="right: 75px;top: -28px;">
+	  <button ion-fab mini color="danger" (click)="deleteSupplier()"><ion-icon name="ios-trash-outline"></ion-icon></button>
+	</ion-fab>
+
+  <ion-list>
+    <ion-item>
+        <ion-label stacked>Supplier Name</ion-label>
+        {{supplier.name}}
+    </ion-item>
+    <ion-item>
+        <ion-label stacked>Owner Name</ion-label>
+        {{supplier.ownername}}
+    </ion-item>
+    <ion-item>
+        <ion-label stacked>Mobile No</ion-label>
+        {{supplier.mobileno}}
+    </ion-item>
+    <ion-item>
+        <ion-label stacked>GSTIN No</ion-label>
+        {{supplier.gstinno}}
+    </ion-item>
+    <ion-item>
+        <ion-label stacked>PAN No/TIN NO</ion-label>
+        {{supplier.gstinno}}
+    </ion-item>
+    <ion-item>
+        <ion-label stacked>Address</ion-label>
+        {{supplier.address}}
+    </ion-item>
+    <ion-item item-end>
+        <ion-label stacked>Notes</ion-label>
+        {{supplier.notes}}
+    </ion-item>
+  </ion-list>    
+</ion-content>

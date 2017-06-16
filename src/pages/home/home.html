@@ -38,11 +38,16 @@
 </ion-content>
 
 <ion-footer class="page-home-footer" padding>
-  	<div class="home-action-button">
-		<button ion-button color="default" full round (click)="navigatePage('addnewitempage')" >Add New Item</button>
-		<button ion-button color="secondary" full round (click)="navigatePage('stockinpage')" >Stock In</button>
-		<button ion-button color="danger" full round (click)="navigatePage('sellitempage')" >Sell Item</button>
-	</div>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6><button ion-button color="default" full round (click)="navigatePage('addnewitempage')" >Add New Item</button></ion-col>
+      <ion-col col-6><button ion-button color="secondary" full round (click)="navigatePage('stockinpage')" >Stock In</button></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6><button ion-button color="danger" full round (click)="navigatePage('sellitempage')" >Sell Item</button></ion-col>
+      <ion-col col-6><button ion-button color="dark" full round (click)="navigatePage('inventorypage')" >Inventory</button></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-footer>
 
 

@@ -1,18 +1,26 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController,AlertController,ToastController } from 'ionic-angular';
-
 import { BarcodeScanner } from "@ionic-native/barcode-scanner";
-import { ItemDetailPage } from "../itemdetail/itemdetail";
-import {InventoryItem} from './item.ts';
 import {InventoryServiceProvider} from '../../providers/inventory-service/inventory-service'
 import { HomePage } from '../home/home';
+import {InventoryItem} from './item.ts';
+import { StockinPage } from '../stockin/stockin';
 
+/**
+ * Generated class for the StockinitemPage page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
 @Component({
-  selector: 'page-scan',
-  templateUrl: 'stockin.html'
+  selector: 'page-stockinitem',
+  templateUrl: 'stockinitem.html',
 })
-export class StockinPage {
+export class StockinitemPage {
+
   public loading: boolean;
+  public itemDetail:any;
+  public qty: number;
 
   public scannerOption = {
           preferFrontCamera : false,
@@ -26,9 +34,7 @@ export class StockinPage {
 
   public unitSelectOptions = {
      title: 'Select Unit'
-  }
-
-  public itemDetail = new InventoryItem();
+  }	
 
   constructor(
     private _nav: NavController,
@@ -38,57 +44,47 @@ export class StockinPage {
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController, 
     public toastCtrl: ToastController) {
+  	  this.itemDetail = new InventoryItem();
+  	  this.qty = 1;
+
   }
 
-  ionViewDidLoad() {
-    this.loading = false;
+  ionViewDidEnter(){
+    this.scan();
   }
+
+  ionViewDidLoad() {}
 
   public scan() {
-   
     this.loading = true;
-
     this._barcodeScanner.scan(this.scannerOption).then((barcodeData) => {
       if (barcodeData.cancelled) {
         this.loading = false;
+        this._nav.setRoot(HomePage);
         return false;
       }
-      this.goToResult(barcodeData);
+      if(barcodeData && barcodeData.text){
+      	this.getItemDetails(barcodeData.text);
+      }
     }, (err) => {
-      console.log(err);
       this.loading = false;
     });
   }
 
-  private goToResult(barcodeData) {
-    console.log(barcodeData);
-    this.itemDetail["ean"] = barcodeData.text;
-    this.loading = false;
-  }
 
-
-  public saveItemToInventory(){
-
-    if(!this.itemDetail.name || !this.itemDetail.name.trim()){
-      this.showAlert('Error!', 'Please provide item name.');
-      return false;
-    }
-
+  public getItemDetails(eanNo){
     let loader = this.loadingCtrl.create({
-      content: "Saving item ...",
+      content: "Finding item ...",
       spinner: 'circles'
     });
     loader.present();
 
-    this._inventoryServiceProvider.saveItemToInventory(this.itemDetail).then((data) =>{
-      loader.dismiss();
-
-      let toast = this.toastCtrl.create({
-        message: 'Item added in inventory successfully.',
-        duration: 3000
-      });
-      toast.present();
-      this.resetitemForm();
+    this._inventoryServiceProvider.getItemByEANno(eanNo).then((data) =>{
+    	if(!!data){
+    		this.itemDetail = data;
+    	}else{
+    		this._nav.setRoot(StockinPage);
+    	}
     },(err) => {
       this.showAlert("Error", "Sorry but we enconter with some issue. Please try again.");
       loader.dismiss();
@@ -104,20 +100,30 @@ export class StockinPage {
         alert.present();
   }
 
-  private resetitemForm(){
-      this.itemDetail.name = '';
-      this.itemDetail.brand = '';
-      this.itemDetail.ean = '';
-      this.itemDetail.unit = '';
-      this.itemDetail.purchase_rate = '';
-      this.itemDetail.selling_rate = '';
-      this.itemDetail.qty = '';
-      this.itemDetail.description = '';
-      this.itemDetail.supplier = '';
-      this.itemDetail.category = '';
+
+  public updateItemToInventory(){
+    let loader = this.loadingCtrl.create({
+      content: "Please wait....",
+      spinner: 'circles'
+    });
+    loader.present();
+
+    this.qty = this.qty || 0;
+    this.itemDetail["qty"] = this.itemDetail["qty"] || 0;
+    this.itemDetail["qty"] = this.itemDetail["qty"] + this.qty;
+
+    this._inventoryServiceProvider.updateItemToInventory(this.itemDetail).then((data) =>{
+      loader.dismiss();
+      this._nav.setRoot(HomePage);
+      this.showAlert("Success", "Item stocked in inventory successfully.");
+    },(err) => {
+      this.showAlert("Error", "Sorry but we enconter with some issue. Please try again.");
+      loader.dismiss();
+    });
   }
 
   public cancel(){
     this._nav.setRoot(HomePage);
   }
+
 }
