@@ -19,7 +19,7 @@ export class SuppliereditPage {
   constructor(
   			public navCtrl: NavController, 
   			public navParams: NavParams,
-  	    	public supplierProvider: SupplierProvider,
+  	    public supplierProvider: SupplierProvider,
     		public loadingCtrl: LoadingController,
     		public alertCtrl: AlertController, 
     		public toastCtrl: ToastController) {
@@ -29,10 +29,19 @@ export class SuppliereditPage {
   	if(this.navParams.get('actionType') === 'edit'){
   		this.actionType = "edit";
   		this.buttonText = "Update";
+      this.supplier = this.navParams.get("supplierDetails");
   	}else{
   		this.actionType = "addnew";
   		this.buttonText = "Save"
   	}
+  }
+
+  doAction(){
+    if(this.actionType === "edit"){
+      this.updateSupplier();
+    }else{
+      this.saveSupplier();
+    }
   }
 
   saveSupplier(){
@@ -51,19 +60,48 @@ export class SuppliereditPage {
   	this.supplierProvider.saveSupplier(this.supplier).then((data)=>{
       
       loader.dismiss();
-
       let toast = this.toastCtrl.create({
         message: 'supplier added successfully.',
         duration: 3000
       });
       toast.present();
       this.resetitemForm();
-
   	},(err) => {
 
   	});
   }
 
+
+
+  updateSupplier(){
+
+    if(!this.supplier.name || !this.supplier.name.trim()){
+      this.showAlert('Error!', 'Please provide supplier name.');
+      return false;
+    }
+
+    let loader = this.loadingCtrl.create({
+      content: "Updating item ...",
+      spinner: 'circles'
+    });
+    loader.present();
+
+    this.supplierProvider.updateSupplier(this.supplier).then((data)=>{
+      
+      loader.dismiss();
+
+      let toast = this.toastCtrl.create({
+        message: 'supplier updated successfully.',
+        duration: 3000
+      });
+      toast.present();
+      this.resetitemForm();
+      this.navCtrl.pop();
+
+    },(err) => {
+
+    });
+  }
 
   showAlert(title, text){
         let alert = this.alertCtrl.create({

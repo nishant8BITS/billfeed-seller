@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="page-supplierdetails">
 
 	<ion-fab top right edge>
 	  <button ion-fab mini color="light" (click)="editSupplier()"><ion-icon name="ios-create-outline"></ion-icon></button>
@@ -19,32 +19,32 @@
 
   <ion-list>
     <ion-item>
-        <ion-label stacked>Supplier Name</ion-label>
+        <div class="list-item-title">Supplier Name</div>
         {{supplier.name}}
     </ion-item>
     <ion-item>
-        <ion-label stacked>Owner Name</ion-label>
-        {{supplier.ownername}}
+        <div class="list-item-title">Owner Name</div>
+        {{supplier.ownername ? supplier.ownername: 'n/a'}}
     </ion-item>
     <ion-item>
-        <ion-label stacked>Mobile No</ion-label>
-        {{supplier.mobileno}}
+        <div class="list-item-title">Mobile No</div>
+        {{supplier.mobileno ? supplier.mobileno: 'n/a'}}
     </ion-item>
     <ion-item>
-        <ion-label stacked>GSTIN No</ion-label>
-        {{supplier.gstinno}}
+        <div class="list-item-title">GSTIN No</div>
+        {{supplier.gstinno ? supplier.gstinno : 'n/a'}}
     </ion-item>
     <ion-item>
-        <ion-label stacked>PAN No/TIN NO</ion-label>
-        {{supplier.gstinno}}
+        <div class="list-item-title">PAN No/TIN NO</div>
+        {{supplier.panno ? supplier.panno : 'n/a'}}
     </ion-item>
     <ion-item>
-        <ion-label stacked>Address</ion-label>
-        {{supplier.address}}
+        <div class="list-item-title">Address</div>
+        {{supplier.address ? supplier.address: 'n/a'}}
     </ion-item>
     <ion-item item-end>
-        <ion-label stacked>Notes</ion-label>
-        {{supplier.notes}}
+        <div class="list-item-title">Notes</div>
+        {{supplier.notes ? supplier.notes : 'n/a'}}
     </ion-item>
   </ion-list>    
 </ion-content>

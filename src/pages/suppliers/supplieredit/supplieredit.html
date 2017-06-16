@@ -28,7 +28,7 @@
     </ion-item>
     <ion-item>
         <ion-label stacked>PAN No/TIN NO</ion-label>
-        <ion-input type="text" [(ngModel)]="supplier.gstinno"></ion-input>
+        <ion-input type="text" [(ngModel)]="supplier.panno"></ion-input>
     </ion-item>
     <ion-item>
         <ion-label stacked>Address</ion-label>
@@ -45,6 +45,6 @@
 <ion-footer padding>
   <div class="text-center edit-footer-action">
   	<div><button ion-button full (click)="cancel()" color="danger">Cancel</button></div>
-  	<div style="float:right"><button ion-button full (click)="saveSupplier()" color="secondary" [disabled]="loading">{{buttonText}}</button></div>
+  	<div style="float:right"><button ion-button full (click)="doAction()" color="secondary" [disabled]="loading">{{buttonText}}</button></div>
   </div>
 </ion-footer>

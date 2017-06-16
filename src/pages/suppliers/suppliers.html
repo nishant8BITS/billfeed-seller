@@ -12,7 +12,7 @@
     <ion-fab top right edge style="top: -56px;">
       <button ion-fab mini color="light" (click)="addNewItem()"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
-<ion-searchbar (ionInput)="getItems($event)" [placeholder]= "'Search supplier'"></ion-searchbar>
+<ion-searchbar (ionInput)="searchSupplier($event)" [placeholder]= "'Search supplier'"></ion-searchbar>
 <ion-list>
     <button ion-item *ngFor="let supplier of suppliers" (click)="viewSupplierDetail(supplier)">
        {{supplier.name}} <ion-icon name="ios-arrow-dropright-outline" item-end></ion-icon>
