@@ -9,6 +9,12 @@
 
 
 <ion-content class="sell-item-content">
+
+    <ion-fab top right edge style="top: -56px;">
+      <button ion-fab mini color="light" (click)="scanItem()"><ion-icon name="search"></ion-icon></button>
+      <button ion-fab mini color="light" (click)="addNewItem()" style="top: -48px;
+    right: 67px;"><ion-icon name="barcode"></ion-icon></button>
+    </ion-fab>
 	<ion-list class="sell-item-list">
 		<ion-item>
 			<ion-grid>
@@ -121,5 +127,5 @@
 </ion-content>
 
 <ion-footer padding class="sell-item-footer">
-  <button ion-button large full color="secondary" (click)="saveItemToInventory()" [disabled]="loading"><span class="pay-title">Pay</span><span class="pay-amount"><span>Rs </span> 200.30</span></button>
+  <button ion-button large full color="secondary" (click)="showPaymentOption()" [disabled]="loading"><span class="pay-title">Pay</span><span class="pay-amount"><span>Rs </span> 200.30</span></button>
 </ion-footer>

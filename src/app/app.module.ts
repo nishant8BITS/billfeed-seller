@@ -14,7 +14,6 @@ import { InventoryListPage } from '../pages/inventory/inventory';
 import { InventoryServiceProvider } from '../providers/inventory-service/inventory-service';
 import { InventoryModalDetailPage } from '../pages/modals/itemdetailview/itemdetailview';
 import { LoginPage} from '../pages/login/login';
-import { StockoutComponent } from '../components/stockout/stockout';
 
 import { SellitemPageModule} from '../pages/sellitem/sellitem.module';
 import { SettingsPageModule} from '../pages/settings/settings.module';
@@ -36,8 +35,7 @@ import { SupplierProvider } from '../providers/supplier/supplier';
     ItemDetailPage,
     InventoryListPage,
     InventoryModalDetailPage,
-    LoginPage,
-    StockoutComponent
+    LoginPage
   ],
   imports: [
     BrowserModule,
