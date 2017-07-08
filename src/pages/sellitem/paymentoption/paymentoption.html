@@ -1,6 +1,7 @@
 <ion-header>
   <ion-toolbar color="secondary">
-    <ion-buttons start>
+     <ion-title *ngIf="!showSuccess">Total Amount</ion-title>
+    <ion-buttons start *ngIf="!showSuccess">
       <button ion-button (click)="dismiss()">
         <span ion-text color="primary" showWhen="ios">Cancel</span>
         <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
@@ -11,10 +12,22 @@
 
 
 <ion-content padding>
+
+<div *ngIf="showSuccess">
+  <div class="success">
+  <ion-icon name="checkmark-circle-outline"></ion-icon>
+  <p>Transaction Successfull</p>
+  </div>
+ <button ion-button large full color="secondary" (click)="navigate('newsell')">New Sell</button>
+ </div>
+
+<div *ngIf="!showSuccess">
 <div class="total-payment">
   <div class="payment-title">Pay</div>
-  <input type="number" name="" value="24" class="input-total-payment">
+  <h2 class="payment-amount">{{totalPayment | currency:'INR':true:'1.2-2'}}</h2>
 </div>
-<button ion-button large full color="secondary" (click)="showPaymentOption()" style="margin-bottom:10px;">Cash</button>
-<button ion-button large full color="secondary" (click)="showPaymentOption()">Credit Cards</button>
+<button ion-button large full color="secondary" (click)="payVia('cash')" style="margin-bottom:10px;">Cash</button>
+<button ion-button large full color="danger" (click)="payVia('coupan')" style="margin-bottom:10px;">Coupan</button>
+<button ion-button large full color="secondary" (click)="payVia('card')">Credit Cards</button>
+</div>
 </ion-content>

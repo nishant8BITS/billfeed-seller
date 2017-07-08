@@ -10,6 +10,7 @@ export class InventoryItem {
       unit: string;
       purchase_rate: number;
       selling_rate: number;
+      hsn: string;
       
 	constructor(){
 

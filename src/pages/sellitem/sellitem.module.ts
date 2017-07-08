@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { SellitemPage } from './sellitem';
 import {PaymentOptionPage} from './paymentoption/paymentoption';
+import {ItemDetailsPage} from './itemdetails/itemdetails';
+
 
 @NgModule({
   declarations: [
     SellitemPage,
-    PaymentOptionPage
+    PaymentOptionPage,
+    ItemDetailsPage
   ],
   imports: [
     IonicPageModule.forChild(SellitemPage),
@@ -15,7 +18,8 @@ import {PaymentOptionPage} from './paymentoption/paymentoption';
     SellitemPage
   ],
   entryComponents: [
-   PaymentOptionPage
+   PaymentOptionPage,
+   ItemDetailsPage
   ],
 })
 export class SellitemPageModule {}

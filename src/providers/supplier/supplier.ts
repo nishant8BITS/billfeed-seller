@@ -12,7 +12,8 @@ import 'rxjs/add/operator/map';
 export class SupplierProvider {
 
   private headers = new Headers();
-  public API_BaseUrl = "http://localhost:3000";//'https://billfeed-backend.herokuapp.com';//'http://localhost:3000';
+  //public API_BaseUrl = "http://localhost:3000";//'https://billfeed-backend.herokuapp.com';//'http://localhost:3000';
+  public API_BaseUrl = 'https://billfeed-backend.herokuapp.com';
 
   constructor(public http: Http) {
     console.log('Hello InventoryServiceProvider Provider');

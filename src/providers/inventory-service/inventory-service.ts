@@ -13,7 +13,9 @@ export class InventoryServiceProvider {
 
   private headers = new Headers();
 
-  public API_BaseUrl = "http://localhost:3000";//'https://billfeed-backend.herokuapp.com';//'http://localhost:3000';
+  //public API_BaseUrl = "http://localhost:3000";//'https://billfeed-backend.herokuapp.com';//'http://localhost:3000';
+
+  public API_BaseUrl = 'https://billfeed-backend.herokuapp.com';
 
   constructor(public http: Http) {
     console.log('Hello InventoryServiceProvider Provider');
@@ -85,7 +87,7 @@ export class InventoryServiceProvider {
      let headers = new Headers({ 'Content-Type': 'application/json' });
      let options = new RequestOptions({ headers: headers });
       return new Promise(resolve => {
-        this.http.get(this.API_BaseUrl + '/api/v1/inventory/search?ean' + ean, options)
+        this.http.get(this.API_BaseUrl + '/api/v1/inventory/search?ean=' + ean, options)
           .map(res => res.json())
           .subscribe(data => {
             resolve(data);

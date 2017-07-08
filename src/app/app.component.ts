@@ -12,7 +12,6 @@ import {SellitemPage} from '../pages/sellitem/sellitem';
 import {SettingsPage} from '../pages/settings/settings';
 import {StockinitemPage} from '../pages/stockinitem/stockinitem';
 
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -20,7 +19,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   //rootPage: any = LoginPage;
-  rootPage: any = SellitemPage;
+  rootPage: any = LoginPage; //SellitemPage;
 
   pages: Array<{title: string, component: any}>;
 

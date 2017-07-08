@@ -5,127 +5,80 @@
     </button>
     <ion-title>Sell Item</ion-title>
   </ion-navbar>
+    <ion-fab top right edge style="top:0px;height:0;">
+      <button ion-fab mini color="light" (click)="searchItem()"><ion-icon name="search"></ion-icon></button>
+      <button ion-fab mini color="light" (click)="scanItem()" style="top:-48px;
+    right: 67px;"><ion-icon name="barcode"></ion-icon></button>
+    </ion-fab>
 </ion-header>
 
 
 <ion-content class="sell-item-content">
-
-    <ion-fab top right edge style="top: -56px;">
-      <button ion-fab mini color="light" (click)="scanItem()"><ion-icon name="search"></ion-icon></button>
-      <button ion-fab mini color="light" (click)="addNewItem()" style="top: -48px;
-    right: 67px;"><ion-icon name="barcode"></ion-icon></button>
-    </ion-fab>
 	<ion-list class="sell-item-list">
-		<ion-item>
+		<ion-item *ngFor="let item of items; let pos = index">
 			<ion-grid>
 				<ion-row>
 					<ion-col col-2>
-						<div style="margin-top: 11px;text-align: center;">10</div>
+						<div style="margin-top: 6px;text-align: center;">{{item.buyQty}}</div>
+						<div class="unit">{{item.unit}}</div>
 					</ion-col>
-					<ion-col>
-						<h2>Parle G Biscuit</h2>
-						<p>Cream Biscuit</p>
+					<ion-col class="item-detail">
+						<p>{{item.name}}</p>
+						<p class="item-hsn">HSN: {{item.hsn}}</p>
 					</ion-col>
-					<ion-col col-2>
-						<div style="margin-top: 11px;">10.00</div>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
-			<ion-icon name="ios-trash-outline" item-right></ion-icon>
-		</ion-item>
-		<ion-item>
-			<ion-grid>
-				<ion-row>
-					<ion-col col-2>
-						<div style="margin-top: 11px;text-align: center;">10</div>
-					</ion-col>
-					<ion-col>
-						<h2>Parle G Biscuit</h2>
-						<p>Cream Biscuit</p>
-					</ion-col>
-					<ion-col col-2>
-						<div style="margin-top: 11px;">10.00</div>
+					<ion-col col-3>
+						<div class="item-amount">{{item.amount | number:'1.2-2'}}</div>
 					</ion-col>
 				</ion-row>
 			</ion-grid>
-			<ion-icon name="ios-trash-outline" item-right></ion-icon>
-		</ion-item>
-		<ion-item>
-			<ion-grid>
-				<ion-row>
-					<ion-col col-2>
-						<div style="margin-top: 11px;text-align: center;">10</div>
-					</ion-col>
-					<ion-col>
-						<h2>Parle G Biscuit</h2>
-						<p>Cream Biscuit</p>
-					</ion-col>
-					<ion-col col-2>
-						<div style="margin-top: 11px;">10.00</div>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
-			<ion-icon name="ios-trash-outline" item-right></ion-icon>
-		</ion-item>
-		<ion-item>
-			<ion-grid>
-				<ion-row>
-					<ion-col col-2>
-						<div style="margin-top: 11px;text-align: center;">10</div>
-					</ion-col>
-					<ion-col>
-						<h2>Parle G Biscuit</h2>
-						<p>Cream Biscuit</p>
-					</ion-col>
-					<ion-col col-2>
-						<div style="margin-top: 11px;">10.00</div>
-					</ion-col>
-				</ion-row>
-			</ion-grid>
-			<ion-icon name="ios-trash-outline" item-right></ion-icon>
+			<ion-icon name="ios-trash-outline" item-right (click)="removeItem(item, pos)"></ion-icon>
 		</ion-item>
 </ion-list>
 
-<div class="hr-line">
-	<ion-icon name="paper"></ion-icon>
-</div>
 
-<div class="sub-total-area">
-	<ion-grid>
-	<ion-row>
-		<ion-col>
-			<div>Sub Total</div>
-		</ion-col>
-		<ion-col col-3>
-			<div class="price">Rs 10.00</div>
-		</ion-col>
-	</ion-row>
-	<ion-row>
-		<ion-col>
-			<div>Discount</div>
-		</ion-col>
-		<ion-col col-3>
-			<div class="price"><span class="minus-symbol"></span>Rs 10.00</div>
-		</ion-col>
-	</ion-row>
-	<ion-row>
-		<ion-col>
-			<div>Tax</div>
-		</ion-col>
-		<ion-col col-3>
-			<div class="price"><strong class="plus-symbol">+</strong>Rs 0.00</div>
-		</ion-col>
-	</ion-row>
-</ion-grid>
-
-<div class="grand-total">
-	<div>Total <span>(4 items)</span></div>
-	<div class="total-final-price">Rs 0.00</div>
-</div>
-</div>
 
 </ion-content>
 
-<ion-footer padding class="sell-item-footer">
-  <button ion-button large full color="secondary" (click)="showPaymentOption()" [disabled]="loading"><span class="pay-title">Pay</span><span class="pay-amount"><span>Rs </span> 200.30</span></button>
+<ion-footer class="sell-item-footer">
+<div>
+	<div class="hr-line">
+		<ion-icon name="paper"></ion-icon>
+	</div>
+
+	<div class="sub-total-area">
+		<ion-grid>
+		<ion-row>
+			<ion-col>
+				<div>Sub Total</div>
+			</ion-col>
+			<ion-col col-3>
+				<div class="price">{{subTotal | currency:'INR':true:'1.2-2'}}</div>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<div>Discount</div>
+			</ion-col>
+			<ion-col col-3>
+				<div class="price"><span class="minus-symbol"></span>{{ discount | currency:'INR':true:'1.2-2'}}</div>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<div>Tax: <span class="help-text">GST 10%</span></div>
+			</ion-col>
+			<ion-col col-3>
+				<div class="price"><strong class="plus-symbol">+</strong>{{gstTax | currency:'INR':true:'1.2-2'}}</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<div class="grand-total">
+		<div>Total <span>({{items.length}} items)</span></div>
+		<div class="total-final-price">{{finalPayableAmount | currency:'INR':true:'1.2-2'}}</div>
+	</div>
+</div>
+</div>
+  <button ion-button large full color="secondary" (click)="showPaymentOption()" [disabled]="loading"><span class="pay-title">Pay</span>
+  <span class="pay-amount">{{finalPayableAmount | currency:'INR':true:'1.2-2'}}</span></button>
 </ion-footer>

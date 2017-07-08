@@ -115,6 +115,7 @@ export class StockinPage {
       this.itemDetail.description = '';
       this.itemDetail.supplier = '';
       this.itemDetail.category = '';
+      this.itemDetail.hsn = '';
   }
 
   public cancel(){
